@@ -4,7 +4,7 @@ import { endsUpInValidPosition } from '../utilities/endsUpInValidPosition';
 import useMapStore from './map';
 import useGameStore from './game';
 
-export const state: { currentRow: number; currentTile: 0; movesQueue: []; ref: THREE.Object3D | null } = {
+export const state: { currentRow: number; currentTile: 0; movesQueue: MoveDirection[]; ref: THREE.Object3D | null } = {
   currentRow: 0,
   currentTile: 0,
   movesQueue: [],
