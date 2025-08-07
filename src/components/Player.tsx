@@ -54,7 +54,7 @@ export function Player() {
           </mesh>
           {/* Tail */}
           <mesh position={[0, -5, 10]} rotation={[-Math.PI / 4, 0, 0]} castShadow receiveShadow>
-            <boxGeometry args={[4, 4, 2]} />
+            <boxGeometry args={[5, 4, 2]} />
             <meshLambertMaterial color={0x443344} flatShading />
           </mesh>
         </group>

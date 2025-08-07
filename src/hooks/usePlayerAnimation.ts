@@ -5,12 +5,27 @@ import { tileSize } from '../constants';
 
 export default function usePlayerAnimation(ref: React.RefObject<THREE.Group | null>) {
   const moveClock = new THREE.Clock(false);
+  const blinkClock = new THREE.Clock(true);
 
   useFrame(() => {
     if (!ref.current) return;
-    if (!state.movesQueue.length) return;
     const player = ref.current;
 
+    const eyes = player.children[0].children[1] as THREE.Mesh;
+    if (eyes) {
+      const blinkInterval = 3;
+      const blinkDuration = 0.2;
+      const elapsedTime = blinkClock.getElapsedTime();
+
+      if (elapsedTime % blinkInterval < blinkDuration) {
+        const blinkProgress = Math.abs(Math.sin((elapsedTime % blinkDuration) * Math.PI * (1 / blinkDuration)));
+        eyes.scale.set(1, 1, 1 - 1 * blinkProgress); // Shrink vertically
+      } else {
+        eyes.scale.set(1, 1, 1);
+      }
+    }
+
+    if (!state.movesQueue.length) return;
     if (!moveClock.running) moveClock.start();
 
     const stepTime = 0.2;
