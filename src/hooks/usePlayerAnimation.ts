@@ -55,6 +55,7 @@ function setPosition(player: THREE.Group, progress: number) {
   player.position.x = THREE.MathUtils.lerp(startX, endX, progress);
   player.position.y = THREE.MathUtils.lerp(startY, endY, progress);
   player.children[0].position.z = Math.sin(progress * Math.PI) * 8;
+  player.children[0].children[5].rotation.x = Math.sin(progress * Math.PI) * 2 + -Math.PI / 4;
 }
 
 function setRotation(player: THREE.Group, progress: number) {
