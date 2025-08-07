@@ -27,6 +27,7 @@ export default function usePlayerAnimation(ref: React.RefObject<THREE.Group | nu
 }
 
 function setPosition(player: THREE.Group, progress: number) {
+  if (state.movesQueue.length === 0) return;
   const startX = state.currentTile * tileSize;
   const startY = state.currentRow * tileSize;
   let endX = startX;
@@ -45,11 +46,12 @@ function setPosition(player: THREE.Group, progress: number) {
 function setRotation(player: THREE.Group, progress: number) {
   let endRotation = 0;
 
-  if (state.movesQueue[0] === 'forward') endRotation = 0;
-  if (state.movesQueue[0] === 'left') endRotation = Math.PI / 2;
-  if (state.movesQueue[0] === 'right') endRotation = -Math.PI / 2;
-
-  if (state.movesQueue[0] === 'backward') endRotation = Math.PI;
+  if (state.movesQueue.length > 0) {
+    if (state.movesQueue[0] === 'forward') endRotation = 0;
+    if (state.movesQueue[0] === 'left') endRotation = Math.PI / 2;
+    if (state.movesQueue[0] === 'right') endRotation = -Math.PI / 2;
+    if (state.movesQueue[0] === 'backward') endRotation = Math.PI;
+  }
 
   player.children[0].rotation.z = THREE.MathUtils.lerp(player.children[0].rotation.z, endRotation, progress);
 }
