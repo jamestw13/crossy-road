@@ -27,13 +27,35 @@ export function Player() {
     <Bounds fit clip observe margin={10}>
       <group ref={player}>
         <group>
-          <mesh position={[0, 0, 10]} castShadow receiveShadow>
-            <boxGeometry args={[15, 15, 20]} />
+          {/* Head */}
+          <mesh position={[0, 0, 18]} castShadow receiveShadow>
+            <boxGeometry args={[5, 6, 4]} />
+            <meshLambertMaterial color={0x000000} flatShading />
+          </mesh>
+          {/* Eyes */}
+          <mesh position={[0, 1, 18]} castShadow receiveShadow>
+            <boxGeometry args={[6, 1, 2]} />
             <meshLambertMaterial color={0xffffff} flatShading />
           </mesh>
-          <mesh position={[0, 0, 21]} castShadow receiveShadow>
-            <boxGeometry args={[2, 4, 2]} />
-            <meshLambertMaterial color={0xf0619a} flatShading />
+          {/* Body */}
+          <mesh position={[0, 0, 10]} castShadow receiveShadow>
+            <boxGeometry args={[8, 8, 12]} />
+            <meshLambertMaterial color={0x000000} flatShading />
+          </mesh>
+          {/* Wings */}
+          <mesh position={[0, 0, 10]} castShadow receiveShadow>
+            <boxGeometry args={[9, 6, 10]} />
+            <meshLambertMaterial color={0x443344} flatShading />
+          </mesh>
+          {/* Beak */}
+          <mesh position={[0, 4, 17]} castShadow receiveShadow>
+            <boxGeometry args={[2, 6, 3]} />
+            <meshLambertMaterial color={0x666666} flatShading />
+          </mesh>
+          {/* Tail */}
+          <mesh position={[0, -5, 10]} rotation={[-Math.PI / 4, 0, 0]} castShadow receiveShadow>
+            <boxGeometry args={[4, 4, 2]} />
+            <meshLambertMaterial color={0x443344} flatShading />
           </mesh>
         </group>
         <DirectionalLight ref={lightRef} />
